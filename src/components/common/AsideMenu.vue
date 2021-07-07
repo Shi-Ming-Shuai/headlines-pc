@@ -8,6 +8,8 @@
     text-color="#fff"
     active-text-color="#ffd04b"
     router
+    :collapse="isCollapse"
+    :class="{ 'yes-collapse': isCollapse }"
   >
     <el-submenu index="1">
       <template slot="title">
@@ -59,9 +61,17 @@
 export default {
   name: 'Aside-menu',
   data() {
-    return {}
+    return {
+      isCollapse: false // 是否折叠菜单
+    }
   },
   components: {},
+  mounted() {
+    // 挂载完成 订阅自定义事件 (Header 组件发布)
+    this.$bus.$on('collapse-menu', data => {
+      this.isCollapse = data
+    })
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath)
@@ -75,7 +85,13 @@ export default {
 
 <style lang="less" scoped>
 .el-menu {
+  // transition: width 1s;
+  width: 240px;
   height: 100%;
   border-right: none;
+  transition: width 0s; // 解决侧边栏 搜索的时候卡顿问题
+}
+.yes-collapse {
+  width: 70px;
 }
 </style>

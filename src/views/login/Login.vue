@@ -61,7 +61,7 @@ export default {
     return {
       isLoginLoading: false, // 登录按钮为加载状态(不可点击 防止用户多次点击登录)
       user: {
-        mobile: '15930252991',
+        mobile: '17090086870',
         code: '246810',
         checked: false // 用户是否同意了条款
       },
@@ -69,7 +69,7 @@ export default {
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
           {
-            pattern: /^1[3|5|4|9|8|6]\d{9}$/,
+            pattern: /^1[3|5|4|9|7|8|6]\d{9}$/,
             message: '请输入正确的手机格式',
             trigger: 'blur'
           }
@@ -92,19 +92,24 @@ export default {
       this.$refs[formName].validate(async valid => {
         // 判断是否通过表单验证
         if (valid) {
+          // 深拷贝
+          const user = Object.assign({}, this.user)
+          delete user.checked
           // 发送登录请求  判断登录结果
-          const result = await login(this.user)
+          const result = await login(user)
           if (result) {
             // 多层数据结构 结构出data 再从data中结构出token
             const {
               data: { token }
             } = result
-            // 本地存储token
+            // 本地存储token  跳转至访问的页面
             setItem('token', token)
             this.$message({
               type: 'success',
               message: '登录成功'
             })
+            // 返回上一级页面
+            this.$router.back()
           } else {
             this.$message({
               type: 'error',
