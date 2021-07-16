@@ -10,13 +10,13 @@
     </div>
     <div class="user vertical-center">
       <el-avatar
-        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+        :src="userInfo.avatar_url"
         fit="cover"
         shape="square"
       ></el-avatar>
       <el-dropdown class="dropdown">
         <span class="el-dropdown-link">
-          用户昵称
+          {{ userInfo.name }}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -39,12 +39,31 @@ export default {
   name: 'Header',
   data() {
     return {
-      isCollapse: false // 折叠菜单
+      isCollapse: false, // 折叠菜单
+      userInfo: {
+        avatar_url:
+          'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        name: '撒旦法双方都'
+      }
     }
   },
   components: {},
   created() {
     // this.getUserProfile()
+  },
+  mounted() {
+    // 订阅 setting 非父子组件通信
+    this.$bus.$on('change-userinfo', data => {
+      const { name, photo } = data
+      this.userInfo = {
+        name,
+        avatar_url: photo
+      }
+    })
+  },
+  beforeDestroy() {
+    // 组件销毁前 取消订阅自定义事件
+    this.$off('change-userinfo')
   },
   methods: {
     // 点击折叠图标  修改折叠状态 发布自定义事件(AsideMenu 组件订阅自定义事件)

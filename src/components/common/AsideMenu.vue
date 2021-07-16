@@ -1,7 +1,8 @@
 <template>
   <!-- 开启router 模式 跳转到 index索引的路由 -->
+  <!--   解决跳转路由不高亮问题  :default-active="$route.path"  -->
   <el-menu
-    default-active="/"
+    :default-active="$route.path"
     @open="handleOpen"
     @close="handleClose"
     background-color="#545c64"
@@ -34,23 +35,23 @@
       <i class="el-icon-document"></i>
       <span slot="title">文章管理</span>
     </el-menu-item>
-    <el-menu-item index="3">
+    <el-menu-item index="/material">
       <i class="el-icon-picture"></i>
       <span slot="title">素材管理</span>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item index="/publish">
       <i class="el-icon-s-promotion"></i>
       <span slot="title">发布文章</span>
     </el-menu-item>
-    <el-menu-item index="5">
+    <el-menu-item index="/comment">
       <i class="el-icon-s-comment"></i>
       <span slot="title">评论管理</span>
     </el-menu-item>
-    <el-menu-item index="6">
+    <el-menu-item index="/fans">
       <i class="el-icon-present"></i>
       <span slot="title">粉丝管理</span>
     </el-menu-item>
-    <el-menu-item index="7">
+    <el-menu-item index="/setiing">
       <i class="el-icon-setting"></i>
       <span slot="title">个人设置</span>
     </el-menu-item>

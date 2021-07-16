@@ -22,7 +22,12 @@ const routes = [
         // path 为空 表示默认展示这个子路由
         path: '', component: () => import('@/views/home/Home')
       },
-      { path: 'article', name: 'article', component: () => import('@/views/article/Article') }
+      { path: 'article', name: 'article', component: () => import('@/views/article/Article') },
+      { path: 'material', name: 'material', component: () => import('@/views/material/Material') },
+      { path: 'publish', name: 'publish', component: () => import('@/views/publish/Publish') },
+      { path: '/comment', name: 'comment', component: () => import('@/views/comment/Comment') },
+      { path: '/fans', name: 'fans', component: () => import('@/views/fans/Fans') },
+      { path: '/setiing', name: 'setiing', component: () => import('@/views/setiing/Setiing') }
     ]
   }
 ]

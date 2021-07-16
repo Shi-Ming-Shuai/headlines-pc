@@ -109,8 +109,14 @@
         <el-table-column align="center" prop="address" label="发布时间">
         </el-table-column>
         <el-table-column align="center" prop="address" label="操作">
-          <template>
-            <el-button type="primary" circle icon="el-icon-edit"></el-button>
+          <!-- 编辑  -  删除 -->
+          <template slot-scope="scope">
+            <el-button
+              type="primary"
+              circle
+              icon="el-icon-edit"
+              @click="EditArticle(scope.row)"
+            ></el-button>
             <el-button type="danger" circle icon="el-icon-delete"></el-button>
           </template>
         </el-table-column>
@@ -258,7 +264,19 @@ export default {
     onSearch() {
       this.startLoading()
     },
-    // 触发loading
+    // 编辑文章按钮  row当前行数据
+    EditArticle(row) {
+      row.articleId = 234532154
+      const { articleId } = row
+      // 跳转至发布文章路由  携带 query参数  (当前文章id)
+      this.$router.push({
+        path: '/publish',
+        query: {
+          articleId
+        }
+      })
+    },
+    // 当前文件公共 - 触发loading
     startLoading() {
       // 触发loading
       this.isLoading = true

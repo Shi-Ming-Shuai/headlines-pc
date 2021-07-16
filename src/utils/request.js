@@ -48,6 +48,8 @@ export function request(config) {
   }, error => {
     console.log('响应拦截器错误')
     console.dir(error)
+    // 将错误信息传递下去  （却保 try catch 能捕获到 错误的响应）
+    return Promise.reject(error)
   }
 
   )
@@ -55,7 +57,18 @@ export function request(config) {
   // 把实例传递出去
   return instance(config)
 }
+
 // 跳转至登录页  记录从哪个页面来的
+// function toLogin() {
+//   // 使用router.currentRoute获取当前路由信息 原因： request.js 无法使用 this.$route
+//   router.replace({
+//     path: '/login',
+//     query: {
+//       redirectRoute: router.currentRoute.fullPath
+//     }
+//   })
+// }
+// // 跳转至登录页  记录从哪个页面来的
 // function toLogin() {
 //   // 使用router.currentRoute获取当前路由信息 原因： request.js 无法使用 this.$route
 //   router.replace({
