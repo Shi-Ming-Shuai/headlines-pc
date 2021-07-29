@@ -27,25 +27,5 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/)
-我又改了
-你试试胡思啊啊仨父
+哈哈哈
 
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
-为啊安慰法
