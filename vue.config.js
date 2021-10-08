@@ -1,6 +1,8 @@
 module.exports = {
+  
   // 生产环境关闭 sourceMap 有了map就可以像未加密的代码一样，准确的输出是哪一行哪一列有错
-  // productionSourceMap: false,
+  productionSourceMap: false,
+  
   devServer: {
     // 内网穿透时 不报错
     disableHostCheck: true,
